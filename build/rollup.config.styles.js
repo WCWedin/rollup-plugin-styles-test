@@ -1,6 +1,7 @@
 import styles from 'rollup-plugin-styles'
 import cssNext from 'postcss-preset-env'
 import multiInput from 'rollup-plugin-multi-input'
+import del from 'rollup-plugin-delete'
 
 export default {
   input: ['src/**/*.css'],
@@ -9,10 +10,13 @@ export default {
   },
   plugins: [
     multiInput(),
+    del({
+      targets: 'src/**/*.css.d.ts'
+    }),
     styles({
       autoModules: id => id.endsWith(".css"),
       dts: true,
       plugins: [cssNext]
-    }),
+    })
   ]
 }
