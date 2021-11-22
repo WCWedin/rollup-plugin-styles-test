@@ -11,7 +11,10 @@ export default {
   plugins: [
     multiInput(),
     del({
-      targets: 'src/**/*.css.d.ts'
+      targets: [
+        'src/**/*.css.d.ts',
+        '.temp/rollup-config-styles'
+      ]
     }),
     styles({
       autoModules: id => id.endsWith(".css"),
